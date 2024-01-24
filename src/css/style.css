@@ -239,7 +239,7 @@ ol {
   cursor: pointer;
 }
 .search-model {
-  display: none;
+  /* display: none; */
   position: fixed;
   width: 100%;
   height: 100%;
@@ -508,9 +508,9 @@ ol {
 .canvas-open {
   display: none;
 }
-.offcanvas-menu-wrapper {
+/* .offcanvas-menu-wrapper {
   display: none;
-}
+} */
 /*---------------------
   Hero
 -----------------------*/
@@ -2056,7 +2056,7 @@ ol {
   }
   .offcanvas-menu-wrapper {
     position: fixed;
-    left: -300px;
+    /* left: -300px; */
     top: 0;
     width: 300px;
     z-index: 999;
@@ -2064,14 +2064,15 @@ ol {
     text-align: center;
     overflow-y: auto;
     height: 100%;
-    opacity: 0;
-    visibility: hidden;
+    /* opacity: 0; */
+    /* visibility: hidden; */
     -webkit-transition: all 0.5s;
     -o-transition: all 0.5s;
     transition: all 0.5s;
     padding: 80px 30px 30px 30px;
     display: block;
   }
+
   .offcanvas-menu-wrapper .canvas-close {
     height: 30px;
     width: 30px;
@@ -2185,7 +2186,7 @@ ol {
     letter-spacing: 2px;
   }
   .offcanvas-menu-wrapper .mainmenu {
-    display: none;
+    display: block;
   }
   .offcanvas-menu-wrapper .slicknav_menu {
     background: transparent;
@@ -2245,6 +2246,41 @@ ol {
     span {
     color: #dfa974;
   }
+
+  .mobile-menu {
+    width: 100%;
+    margin: 0;
+    text-align: left;
+  }
+
+  .mobile-menu ul li .dropdown {
+    padding-left: 20px;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    width: 100%;
+  }
+
+  .mobile-menu ul li a {
+    display: block;
+    margin: 0;
+    padding: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #19191a;
+    border-bottom: 1px solid #e5e5e5;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+
+  .mobile-menu ul li a:hover {
+    border-radius: 0;
+    background: transparent;
+    color: #dfa974;
+  }
+
   .offcanvas-menu-wrapper .top-social {
     display: inline-block;
     margin-top: 30px;

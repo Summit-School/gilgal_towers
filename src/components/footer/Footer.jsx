@@ -1,4 +1,5 @@
 const FooterComponent = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="footer-section">
       <div className="container">
@@ -63,10 +64,10 @@ const FooterComponent = () => {
       <div className="copyright-option">
         <div className="container">
           <div className="row">
-            <div className="col-lg-7">
+            <div className="col-lg-6">
               <ul>
                 <li>
-                  <a href="#">Contact</a>
+                  <a href="/contact-us">Contact</a>
                 </li>
                 <li>
                   <a href="#">Terms of use</a>
@@ -74,20 +75,16 @@ const FooterComponent = () => {
                 <li>
                   <a href="#">Privacy</a>
                 </li>
-                <li>
-                  <a href="#">Environmental Policy</a>
-                </li>
               </ul>
             </div>
-            <div className="col-lg-5">
+            <div className="col-lg-6">
               <div className="co-text">
                 <p>
                   Copyright &copy;
-                  <script>document.write(new Date().getFullYear());</script>
-                  All rights reserved | This template is made with
-                  <i className="fa fa-heart" aria-hidden="true"></i> by
-                  <a href="https://colorlib.com" target="_blank">
-                    Colorlib
+                  {currentYear} All rights reserved | Designed with{" "}
+                  <i className="fa fa-heart" aria-hidden="true"></i> by{" "}
+                  <a href="https://summittech-eng.org" target="_blank">
+                    Summit Tech Ltd
                   </a>
                 </p>
               </div>

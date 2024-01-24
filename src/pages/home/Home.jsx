@@ -6,7 +6,6 @@ import RoomsComponent from "../../components/roomssection/Rooms";
 import TestimonialsComponent from "../../components/testimonialsection/Testimonials";
 import BlogComponent from "../../components/blogsection/Blog";
 import FooterComponent from "../../components/footer/Footer";
-import SearchModalComponent from "../../components/searchmodal/SearchModal";
 
 const HomePage = () => {
   return (
@@ -19,7 +18,6 @@ const HomePage = () => {
       <TestimonialsComponent />
       <BlogComponent />
       <FooterComponent />
-      <SearchModalComponent />
     </div>
   );
 };

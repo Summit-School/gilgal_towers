@@ -1,100 +1,108 @@
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import Offcanvas from "react-bootstrap/Offcanvas";
+
 const HeaderComponent = () => {
+  const { pathname } = useLocation();
+  const [showModal, setShowModal] = useState(false);
+  const [showCanvas, setShowCanvas] = useState(false);
+
   return (
     <>
       {/* <!-- Offcanvas Menu Section Begin --> */}
       <div className="offcanvas-menu-overlay"></div>
-      <div className="canvas-open">
+      <div className="canvas-open" onClick={() => setShowCanvas(!showCanvas)}>
         <i className="icon_menu"></i>
       </div>
-      <div className="offcanvas-menu-wrapper">
-        <div className="canvas-close">
-          <i className="icon_close"></i>
-        </div>
-        <div className="search-icon search-switch">
-          <i className="icon_search"></i>
-        </div>
-        <div className="header-configure-area">
-          <div className="language-option">
-            <img src="img/flag.jpg" alt="" />
-            <span>
-              EN <i className="fa fa-angle-down"></i>
-            </span>
-            <div className="flag-dropdown">
-              <ul>
-                <li>
-                  <a href="#">Zi</a>
-                </li>
-                <li>
-                  <a href="#">Fr</a>
-                </li>
-              </ul>
+
+      <Offcanvas show={showCanvas} onHide={() => setShowCanvas(!showCanvas)}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Gilgal Towers</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <div className="offcanvas-menu-wrapper">
+            <div
+              className="search-icon search-switch"
+              onClick={() => setShowModal(!showModal)}
+            >
+              <i className="icon_search"></i>
             </div>
-          </div>
-          <a href="#" className="bk-btn">
-            Booking Now
-          </a>
-        </div>
-        <nav className="mainmenu mobile-menu">
-          <ul>
-            <li className="active">
-              <a href="./index.html">Home</a>
-            </li>
-            <li>
-              <a href="./rooms.html">Rooms</a>
-            </li>
-            <li>
-              <a href="./about-us.html">About Us</a>
-            </li>
-            <li>
-              <a href="./pages.html">Pages</a>
-              <ul className="dropdown">
-                <li>
-                  <a href="./room-details.html">Room Details</a>
+            <div className="header-configure-area">
+              <div className="language-option">
+                <img src="/img/flag.jpg" alt="flag" />
+                <span>
+                  EN <i className="fa fa-angle-down"></i>
+                </span>
+                <div className="flag-dropdown">
+                  <ul>
+                    <li>
+                      <a href="#">En</a>
+                    </li>
+                    <li>
+                      <a href="#">Fr</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <a href="#" className="bk-btn">
+                Booking Now
+              </a>
+            </div>
+            <nav className="mainmenu mobile-menu">
+              <ul>
+                <li className={pathname === "/" && "active"}>
+                  <a href="/">Home</a>
+                </li>
+                <li className={pathname === "/rooms" && "active"}>
+                  <a href="/rooms">Rooms</a>
+                </li>
+                <li className={pathname === "/about-us" && "active"}>
+                  <a href="/about-us">About Us</a>
                 </li>
                 <li>
-                  <a href="#">Deluxe Room</a>
+                  <a href="#">Pages</a>
+                  <ul className="dropdown">
+                    <li className={pathname === "/gallery" && "active"}>
+                      <a href="/gallery">Gallery</a>
+                    </li>
+                  </ul>
                 </li>
-                <li>
-                  <a href="#">Family Room</a>
+                <li className={pathname === "/events" && "active"}>
+                  <a href="/events">Events</a>
                 </li>
-                <li>
-                  <a href="#">Premium Room</a>
+                <li className={pathname === "/contact-us" && "active"}>
+                  <a href="/contact-us">Contact</a>
                 </li>
               </ul>
-            </li>
-            <li>
-              <a href="./blog.html">News</a>
-            </li>
-            <li>
-              <a href="./contact.html">Contact</a>
-            </li>
-          </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div className="top-social">
-          <a href="#">
-            <i className="fa fa-facebook"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-twitter"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-tripadvisor"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-instagram"></i>
-          </a>
-        </div>
-        <ul className="top-widget">
-          <li>
-            <i className="fa fa-phone"></i> (12) 345 67890
-          </li>
-          <li>
-            <i className="fa fa-envelope"></i> info.colorlib@gmail.com
-          </li>
-        </ul>
-      </div>
+            </nav>
+            <div id="mobile-menu-wrap"></div>
+            <div className="top-social">
+              <a href="#">
+                <i className="fa fa-facebook"></i>
+              </a>
+              <a href="#">
+                <i className="fa fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i className="fa fa-tripadvisor"></i>
+              </a>
+              <a href="#">
+                <i className="fa fa-instagram"></i>
+              </a>
+            </div>
+            <ul className="top-widget">
+              <li>
+                <i className="fa fa-phone"></i> (12) 345 67890
+              </li>
+              <li>
+                <i className="fa fa-envelope"></i> info.colorlib@gmail.com
+              </li>
+            </ul>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
       {/* <!-- Offcanvas Menu Section End --> */}
+
       {/* <!-- Header Section Begin --> */}
       <header className="header-section">
         <div className="top-nav">
@@ -137,7 +145,7 @@ const HeaderComponent = () => {
                     <div className="flag-dropdown">
                       <ul>
                         <li>
-                          <a href="#">Zi</a>
+                          <a href="#">En</a>
                         </li>
                         <li>
                           <a href="#">Fr</a>
@@ -155,8 +163,8 @@ const HeaderComponent = () => {
             <div className="row">
               <div className="col-lg-2">
                 <div className="logo">
-                  <a href="./index.html">
-                    <img src="img/logo.png" alt="" />
+                  <a href="/">
+                    <img src="/img/logo.png" alt="flag" />
                   </a>
                 </div>
               </div>
@@ -164,41 +172,35 @@ const HeaderComponent = () => {
                 <div className="nav-menu">
                   <nav className="mainmenu">
                     <ul>
-                      <li className="active">
-                        <a href="./index.html">Home</a>
+                      <li className={pathname === "/" && "active"}>
+                        <a href="/">Home</a>
+                      </li>
+                      <li className={pathname === "/rooms" && "active"}>
+                        <a href="/rooms">Rooms</a>
+                      </li>
+                      <li className={pathname === "/about-us" && "active"}>
+                        <a href="/about-us">About Us</a>
                       </li>
                       <li>
-                        <a href="./rooms.html">Rooms</a>
-                      </li>
-                      <li>
-                        <a href="./about-us.html">About Us</a>
-                      </li>
-                      <li>
-                        <a href="./pages.html">Pages</a>
+                        <a href="#">Pages</a>
                         <ul className="dropdown">
-                          <li>
-                            <a href="./room-details.html">Room Details</a>
-                          </li>
-                          <li>
-                            <a href="./blog-details.html">Blog Details</a>
-                          </li>
-                          <li>
-                            <a href="#">Family Room</a>
-                          </li>
-                          <li>
-                            <a href="#">Premium Room</a>
+                          <li className={pathname === "/gallery" && "active"}>
+                            <a href="/gallery">Gallery</a>
                           </li>
                         </ul>
                       </li>
-                      <li>
-                        <a href="./blog.html">News</a>
+                      <li className={pathname === "/events" && "active"}>
+                        <a href="/events">Events</a>
                       </li>
-                      <li>
-                        <a href="./contact.html">Contact</a>
+                      <li className={pathname === "/contact-us" && "active"}>
+                        <a href="/contact-us">Contact</a>
                       </li>
                     </ul>
                   </nav>
-                  <div className="nav-right search-switch">
+                  <div
+                    className="nav-right search-switch"
+                    onClick={() => setShowModal(!showModal)}
+                  >
                     <i className="icon_search"></i>
                   </div>
                 </div>
@@ -210,20 +212,25 @@ const HeaderComponent = () => {
       {/* <!-- Header End --></> */}
 
       {/* Search model Begin */}
-      <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-          <div class="search-close-switch">
-            <i class="icon_close"></i>
+      {showModal && (
+        <div className="search-model">
+          <div className="h-100 d-flex align-items-center justify-content-center">
+            <div
+              className="search-close-switch"
+              onClick={() => setShowModal(!showModal)}
+            >
+              <i className="icon_close"></i>
+            </div>
+            <form className="search-model-form">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Search here....."
+              />
+            </form>
           </div>
-          <form class="search-model-form">
-            <input
-              type="text"
-              id="search-input"
-              placeholder="Search here....."
-            />
-          </form>
         </div>
-      </div>
+      )}
     </>
   );
 };

@@ -6,7 +6,7 @@
     Version: 1.0
     Created: Summit Tech
 ---------------------------------------------------------  */
-import jQuery from "jquery";
+// import jQuery from "jquery";
 
 /* global jQuery */
 
