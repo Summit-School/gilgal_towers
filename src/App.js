@@ -16,7 +16,7 @@ import "./css/style.css";
 // import "./js/jquery-3.3.1.min";
 // import "./js/bootstrap.min";
 // import "./js/jquery.magnific-popup.min";
-import "./js/jquery.nice-select.min";
+// import "./js/jquery.nice-select.min";
 // import "./js/jquery-ui.min";
 // import "./js/jquery.slicknav";
 // import "./js/owl.carousel.min";
