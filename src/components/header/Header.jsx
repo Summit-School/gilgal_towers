@@ -53,8 +53,8 @@ const HeaderComponent = () => {
                 <li className={pathname === "/" && "active"}>
                   <a href="/">Home</a>
                 </li>
-                <li className={pathname === "/rooms" && "active"}>
-                  <a href="/rooms">Rooms</a>
+                <li className={pathname === "/bookings" && "active"}>
+                  <a href="/bookings">Bookings</a>
                 </li>
                 <li className={pathname === "/about-us" && "active"}>
                   <a href="/about-us">About Us</a>
@@ -111,10 +111,10 @@ const HeaderComponent = () => {
               <div className="col-lg-6">
                 <ul className="tn-left">
                   <li>
-                    <i className="fa fa-phone"></i> (12) 345 67890
+                    <i className="fa fa-phone"></i> +237 233 333 888
                   </li>
                   <li>
-                    <i className="fa fa-envelope"></i> info.colorlib@gmail.com
+                    <i className="fa fa-envelope"></i> info@gilgaltowers.com
                   </li>
                 </ul>
               </div>
@@ -134,7 +134,7 @@ const HeaderComponent = () => {
                       <i className="fa fa-instagram"></i>
                     </a>
                   </div>
-                  <a href="#" className="bk-btn">
+                  <a href="/bookings" className="bk-btn">
                     Booking Now
                   </a>
                   <div className="language-option">
@@ -164,7 +164,11 @@ const HeaderComponent = () => {
               <div className="col-lg-2">
                 <div className="logo">
                   <a href="/">
-                    <img src="/img/logo.png" alt="flag" />
+                    <img
+                      src="/img/logo.png"
+                      alt="logo"
+                      style={{ width: 100, height: 60, margin: 0 }}
+                    />
                   </a>
                 </div>
               </div>
@@ -175,8 +179,8 @@ const HeaderComponent = () => {
                       <li className={pathname === "/" && "active"}>
                         <a href="/">Home</a>
                       </li>
-                      <li className={pathname === "/rooms" && "active"}>
-                        <a href="/rooms">Rooms</a>
+                      <li className={pathname === "/bookings" && "active"}>
+                        <a href="/bookings">Bookings</a>
                       </li>
                       <li className={pathname === "/about-us" && "active"}>
                         <a href="/about-us">About Us</a>

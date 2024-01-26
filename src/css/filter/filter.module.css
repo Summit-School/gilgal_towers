@@ -1,0 +1,27 @@
+.filter_form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.select_option {
+  width: 25%;
+  margin: 0 10px;
+}
+
+.input_style {
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  .filter_form {
+    display: block;
+  }
+  .select_option {
+    width: 100%;
+    margin: 5px auto;
+  }
+}

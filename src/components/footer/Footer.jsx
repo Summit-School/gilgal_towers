@@ -9,7 +9,7 @@ const FooterComponent = () => {
               <div className="ft-about">
                 <div className="logo">
                   <a href="#">
-                    <img src="img/footer-logo.png" alt="" />
+                    <img src="img/logo-dark.png" alt="" width={150} />
                   </a>
                 </div>
                 <p>
@@ -40,9 +40,11 @@ const FooterComponent = () => {
               <div className="ft-contact">
                 <h6>Contact Us</h6>
                 <ul>
-                  <li>(12) 345 67890</li>
-                  <li>info.colorlib@gmail.com</li>
-                  <li>856 Cordia Extension Apt. 356, Lake, United State</li>
+                  <li>+237 233 333 888</li>
+                  <li>info@gilgaltowers.com</li>
+                  <li>
+                    Gilgal Tower, Newtown Limbe, South West Region, Cameroon
+                  </li>
                 </ul>
               </div>
             </div>

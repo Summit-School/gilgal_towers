@@ -736,6 +736,7 @@ ol {
   transition: all 0.3s;
 }
 .service-item p {
+  text-align: justify;
   color: #707079;
   -webkit-transition: all 0.3s;
   -o-transition: all 0.3s;
@@ -813,6 +814,10 @@ ol {
 .testimonial-section .section-title {
   margin-bottom: 30px;
 }
+.testimonial-slider {
+  display: flex;
+  justify-content: space-between;
+}
 .testimonial-slider.owl-carousel .owl-item img {
   width: auto;
   margin: 0 auto;
@@ -847,6 +852,8 @@ ol {
 }
 .testimonial-slider .ts-item {
   text-align: center;
+  margin: 20px;
+  width: 80%;
 }
 .testimonial-slider .ts-item p {
   font-size: 20px;
@@ -1088,6 +1095,11 @@ ol {
 .about-page-services .ap-service-item .api-text h3 {
   color: #ffffff;
 }
+.about-page-services .ap-service-item .api-text p {
+  color: #ffffff;
+  background: rgba(25, 25, 26, 0.423);
+  padding: 10px 0;
+}
 /*---------------------
   Video Section
 -----------------------*/
@@ -1252,6 +1264,14 @@ ol {
 .room-details-section {
   padding-top: 0;
   padding-bottom: 80px;
+}
+.room-details-section .image-options {
+  display: flex;
+  justify-content: space-between;
+}
+.room-details-section .image-options img {
+  width: 19.5%;
+  cursor: pointer;
 }
 .room-details-item {
   margin-bottom: 50px;
@@ -1528,6 +1548,19 @@ ol {
 .room-booking form .select-option .nice-select .list {
   margin-top: 0;
   width: 100%;
+}
+.room-booking form .radio-select-div label {
+  font-size: 14px;
+  color: #707079;
+  display: block;
+  margin-bottom: 10px;
+}
+.room-booking form .radio-select-options {
+  display: flex;
+  justify-content: space-evenly;
+}
+.room-booking form .radio-select-options input {
+  margin-left: 10px;
 }
 .room-booking form button {
   display: block;
@@ -2354,6 +2387,10 @@ ol {
 /* Large Mobile: 480px */
 
 @media only screen and (max-width: 767px) {
+  .testimonial-slider {
+    display: block;
+    margin: 0;
+  }
   .testimonial-slider.owl-carousel .owl-nav {
     display: none;
   }

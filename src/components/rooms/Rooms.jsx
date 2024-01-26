@@ -31,7 +31,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>
@@ -65,7 +65,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>
@@ -99,7 +99,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>
@@ -133,7 +133,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>
@@ -167,7 +167,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>
@@ -201,7 +201,7 @@ const RoomsSection = () => {
                     </tr>
                   </tbody>
                 </table>
-                <a href="/room-details/:id" className="primary-btn">
+                <a href="/booking-details/:id" className="primary-btn">
                   More Details
                 </a>
               </div>

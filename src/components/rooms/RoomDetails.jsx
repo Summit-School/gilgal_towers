@@ -1,13 +1,35 @@
+import React, { useState, useEffect } from "react";
 import BookingFormComponent from "../bookingform/BookingForm";
 
 const RoomDetailsComponent = () => {
+  const [currentImage, setCurrentImage] = useState("");
+  const images = [
+    "/img/room/room-details.jpg",
+    "/img/room/room-2.jpg",
+    "/img/room/room-3.jpg",
+    "/img/room/room-4.jpg",
+    "/img/room/room-5.jpg",
+  ];
+
+  useEffect(() => {
+    setCurrentImage(images[0]);
+  }, []);
   return (
     <section className="room-details-section spad">
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
             <div className="room-details-item">
-              <img src="/img/room/room-details.jpg" alt="" />
+              <img src={currentImage} alt="" style={{ width: "100%" }} />
+              <div className="image-options">
+                {images.map((item) => (
+                  <img
+                    src={item}
+                    alt="Room Image"
+                    onClick={() => setCurrentImage(item)}
+                  />
+                ))}
+              </div>
               <div className="rd-text">
                 <div className="rd-title">
                   <h3>Premium King Room</h3>

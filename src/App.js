@@ -40,8 +40,8 @@ function App() {
         <Routes>
           {/* UNPROTECTED ROUTES */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/rooms" element={<RoomsPage />} />
-          <Route path="/room-details/:id" element={<RoomDetails />} />
+          <Route path="/bookings" element={<RoomsPage />} />
+          <Route path="/booking-details/:id" element={<RoomDetails />} />
           <Route path="/about-us" element={<AboutPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/event-details/:id" element={<EventDetails />} />

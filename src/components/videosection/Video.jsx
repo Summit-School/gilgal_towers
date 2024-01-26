@@ -10,11 +10,13 @@ const VideoSection = () => {
             <div className="video-text">
               <h2>Discover Our Hotel & Services.</h2>
               <p>
-                It S Hurricane Season But We Are Visiting Hilton Head Island
+                Experience and explore our perfectly designed Luxury Apartments
+                with outclass amenities.
               </p>
               <a
                 href="https://www.youtube.com/watch?v=EzKkl64rRbM"
                 className="play-btn video-popup"
+                target="_blank"
               >
                 <img src="img/play.png" alt="" />
               </a>
