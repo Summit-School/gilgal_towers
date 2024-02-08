@@ -75,7 +75,7 @@ const AboutSection = () => {
             <div className="col-md-4">
               <div
                 className="ap-service-item set-bg"
-                style={{ backgroundImage: "url(img/about/about-p1.jpg)" }}
+                style={{ backgroundImage: "url(img/about/outdoor-Dinning.png)" }}
               >
                 <div className="api-text">
                   <h3>Outdoor Dinning</h3>
@@ -92,7 +92,7 @@ const AboutSection = () => {
             <div className="col-md-4">
               <div
                 className="ap-service-item set-bg"
-                style={{ backgroundImage: "url(img/about/about-p2.jpg)" }}
+                style={{ backgroundImage: "url(img/about/gym.png)" }}
               >
                 <div className="api-text">
                   <h3>Gym</h3>
@@ -106,7 +106,7 @@ const AboutSection = () => {
             <div className="col-md-4">
               <div
                 className="ap-service-item set-bg"
-                style={{ backgroundImage: "url(img/about/about-p3.jpg)" }}
+                style={{ backgroundImage: "url(img/about/parking.png)" }}
               >
                 <div className="api-text">
                   <h3>Parking</h3>
@@ -141,7 +141,7 @@ const AboutSection = () => {
             <div className="col-md-4">
               <div
                 className="ap-service-item set-bg"
-                style={{ backgroundImage: "url(img/about/about-p2.jpg)" }}
+                style={{ backgroundImage: "url(img/about/cantin.png)" }}
               >
                 <div className="api-text">
                   <h3>Canteen</h3>
@@ -159,7 +159,7 @@ const AboutSection = () => {
             <div className="col-md-4">
               <div
                 className="ap-service-item set-bg"
-                style={{ backgroundImage: "url(img/about/about-p3.jpg)" }}
+                style={{ backgroundImage: "url(img/about/ballroom.png)" }}
               >
                 <div className="api-text">
                   <h3>Erica Ballroom</h3>

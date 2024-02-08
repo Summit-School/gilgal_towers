@@ -33,10 +33,10 @@ const AboutComponent = () => {
               <div className="about-pic">
                 <div className="row">
                   <div className="col-sm-6">
-                    <img src="img/about/about-1.jpg" alt="" />
+                    <img src="img/about/about-hompage.png" alt="" height={350} className=" w-100"/>
                   </div>
                   <div className="col-sm-6">
-                    <img src="img/about/about-2.jpg" alt="" />
+                    <img src="img/about/about1-homepage.png" alt="" height={350} className=" w-100 "/>
                   </div>
                 </div>
               </div>
@@ -47,7 +47,7 @@ const AboutComponent = () => {
       <section className="aboutus-section spad">
         <div className="container">
           <div className="row">
-            <div className="col-lg-6">
+            <div className="col-lg-6 my-auto">
               <div className="about-text">
                 <div className="section-title">
                   <span>Our Vision</span>
@@ -72,10 +72,10 @@ const AboutComponent = () => {
               <div className="about-pic">
                 <div className="row">
                   <div className="col-sm-6">
-                    <img src="img/about/about-1.jpg" alt="" />
+                    <img src="img/about/vision2.png" alt="" height={350} className=" w-100 "/>
                   </div>
                   <div className="col-sm-6">
-                    <img src="img/about/about-2.jpg" alt="" />
+                    <img src="img/about/vision.png" alt="" height={350} className="w-100"/>
                   </div>
                 </div>
               </div>
