@@ -13,9 +13,8 @@ const FooterComponent = () => {
                   </a>
                 </div>
                 <p>
-                  We inspire and reach millions of travelers
-                  <br />
-                  across 90 local websites
+                  Experience and explore our perfectly designed Luxury
+                  Apartments with outclass amenities.
                 </p>
                 <div className="fa-social">
                   <a href="#">
@@ -83,7 +82,7 @@ const FooterComponent = () => {
               <div className="co-text">
                 <p>
                   Copyright &copy;
-                  {currentYear} All rights reserved | Designed with{" "}
+                  {currentYear} All rights reserved <br /> Designed with{" "}
                   <i className="fa fa-heart" aria-hidden="true"></i> by{" "}
                   <a href="https://summittech-eng.org" target="_blank">
                     Summit Tech Ltd
