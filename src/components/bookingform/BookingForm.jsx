@@ -30,6 +30,10 @@ const BookingFormComponent = () => {
             <input type="text" className="date-input" id="date-in" />
           </div>
           <div className="check-date">
+            <label for="date-in">Phone Number:</label>
+            <input type="number" className="date-input" id="date-in" />
+          </div>
+          <div className="check-date">
             <label for="date-in">Check In Date:</label>
             <input type="date" className="date-input" id="date-in" />
             {/* <i className="icon_calendar"></i> */}
