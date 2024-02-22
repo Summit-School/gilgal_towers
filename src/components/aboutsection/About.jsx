@@ -33,10 +33,20 @@ const AboutComponent = () => {
               <div className="about-pic">
                 <div className="row">
                   <div className="col-sm-6">
-                    <img src="img/about/about-hompage.png" alt="" height={350} className=" w-100"/>
+                    <img
+                      src="img/about/about-hompage.png"
+                      alt=""
+                      height={300}
+                      className="w-100 "
+                    />
                   </div>
                   <div className="col-sm-6">
-                    <img src="img/about/about1-homepage.png" alt="" height={350} className=" w-100 "/>
+                    <img
+                      src="img/about/about1-homepage.png"
+                      alt=""
+                      height={300}
+                      className=" w-100 "
+                    />
                   </div>
                 </div>
               </div>
@@ -72,10 +82,20 @@ const AboutComponent = () => {
               <div className="about-pic">
                 <div className="row">
                   <div className="col-sm-6">
-                    <img src="img/about/vision2.png" alt="" height={350} className=" w-100 "/>
+                    <img
+                      src="img/about/vision2.png"
+                      alt=""
+                      height={300}
+                      className=" w-100 "
+                    />
                   </div>
                   <div className="col-sm-6">
-                    <img src="img/about/vision.png" alt="" height={350} className="w-100"/>
+                    <img
+                      src="img/about/vision.png"
+                      alt=""
+                      height={300}
+                      className="w-100"
+                    />
                   </div>
                 </div>
               </div>
