@@ -39,6 +39,27 @@ export const getRoom = createAsyncThunk(
     }
 );
 
+export const bookRoom = createAsyncThunk(
+    "app/bookRoom",
+    async (data, thunkAPI) => {
+        try {
+            const response = await axios.post(`${base_url}/booking/create/`, data, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            return response.data;
+        } catch (error) {
+            const message =
+                (error.message && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 // 
 export const getEvents = createAsyncThunk(
     "app/getEvents",
@@ -110,11 +131,29 @@ export const getGalleryImages = createAsyncThunk(
     }
 );
 
-export const bookRoom = createAsyncThunk(
-    "app/bookRoom",
+// 
+export const getRoomReviews = createAsyncThunk(
+    "app/getRoomReviews",
+    async (id, thunkAPI) => {
+        try {
+            const response = await axios.get(`${base_url}/rating/${id}`);
+            return response.data;
+        } catch (error) {
+            const message =
+                (error.message && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+export const addRoomReview = createAsyncThunk(
+    "app/addRoomReview",
     async (data, thunkAPI) => {
         try {
-            const response = await axios.post(`${base_url}/booking/create/`, data, {
+            const response = await axios.post(`${base_url}/rating/create/`, data, {
                 headers: {
                     "Content-Type": "application/json"
                 }
@@ -130,6 +169,30 @@ export const bookRoom = createAsyncThunk(
         }
     }
 );
+
+// 
+export const sendEmail = createAsyncThunk(
+    "app/sendEmail",
+    async (data, thunkAPI) => {
+        try {
+            const response = await axios.post(`${base_url}/message/send/`, data, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            return response.data;
+        } catch (error) {
+            const message =
+                (error.message && error.response.data && error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+
 
 
 export const appSlice = createSlice({

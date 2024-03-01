@@ -460,6 +460,7 @@ ol {
 .menu-item {
   position: relative;
   z-index: 9;
+  background: #222736;
 }
 
 .menu-item .logo {

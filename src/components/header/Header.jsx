@@ -28,7 +28,7 @@ const HeaderComponent = () => {
               <i className="icon_search"></i>
             </div>
             <div className="header-configure-area">
-              <div className="language-option">
+              {/* <div className="language-option">
                 <img src="/img/flag.jpg" alt="flag" />
                 <span>
                   EN <i className="fa fa-angle-down"></i>
@@ -43,7 +43,7 @@ const HeaderComponent = () => {
                     </li>
                   </ul>
                 </div>
-              </div>
+              </div> */}
               <a href="#" className="bk-btn">
                 Booking Now
               </a>
@@ -137,7 +137,7 @@ const HeaderComponent = () => {
                   <a href="/bookings" className="bk-btn">
                     Booking Now
                   </a>
-                  <div className="language-option">
+                  {/* <div className="language-option">
                     <img src="img/flag.jpg" alt="" />
                     <span>
                       EN <i className="fa fa-angle-down"></i>
@@ -152,7 +152,7 @@ const HeaderComponent = () => {
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
@@ -167,7 +167,7 @@ const HeaderComponent = () => {
                     <img
                       src="/img/logo.png"
                       alt="logo"
-                      style={{ width: 100, height: 60, margin: 0 }}
+                      style={{ width: 60, height: 50, margin: 0 }}
                     />
                   </a>
                 </div>
@@ -177,16 +177,24 @@ const HeaderComponent = () => {
                   <nav className="mainmenu">
                     <ul>
                       <li className={pathname === "/" && "active"}>
-                        <a href="/">Home</a>
+                        <a href="/" className="text-light">
+                          Home
+                        </a>
                       </li>
                       <li className={pathname === "/bookings" && "active"}>
-                        <a href="/bookings">Bookings</a>
+                        <a href="/bookings" className="text-light">
+                          Bookings
+                        </a>
                       </li>
                       <li className={pathname === "/about-us" && "active"}>
-                        <a href="/about-us">About Us</a>
+                        <a href="/about-us" className="text-light">
+                          About Us
+                        </a>
                       </li>
                       <li>
-                        <a href="#">Pages</a>
+                        <a href="#" className="text-light">
+                          Pages
+                        </a>
                         <ul className="dropdown">
                           <li className={pathname === "/gallery" && "active"}>
                             <a href="/gallery">Gallery</a>
@@ -194,10 +202,14 @@ const HeaderComponent = () => {
                         </ul>
                       </li>
                       <li className={pathname === "/events" && "active"}>
-                        <a href="/events">Events</a>
+                        <a href="/events" className="text-light">
+                          Events
+                        </a>
                       </li>
                       <li className={pathname === "/contact-us" && "active"}>
-                        <a href="/contact-us">Contact</a>
+                        <a href="/contact-us" className="text-light">
+                          Contact
+                        </a>
                       </li>
                     </ul>
                   </nav>

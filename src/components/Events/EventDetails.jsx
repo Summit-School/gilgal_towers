@@ -74,7 +74,7 @@ const EventDetailsComponent = () => {
   };
 
   const filterEvents = () => {
-    const filtered = events.filter((item) => item.title !== event.title);
+    const filtered = events.filter((item) => item?.title !== event?.title);
     setOtherEvents(filtered);
   };
 
@@ -365,10 +365,10 @@ const EventDetailsComponent = () => {
                       }}
                     >
                       <div className="bi-text">
-                        <span className="b-tag">{item.category}</span>
+                        <span className="b-tag">{item?.category}</span>
                         <h4>
                           <a href={`/event-details/${item._id}`}>
-                            {item.title}
+                            {item?.title}
                           </a>
                         </h4>
                         <div className="b-time">

@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
 import BookingFormComponent from "../bookingform/BookingForm";
 import { useParams } from "react-router-dom";
-import { getRoom } from "../../redux/reducers/app";
+import {
+  getRoom,
+  addRoomReview,
+  getRoomReviews,
+} from "../../redux/reducers/app";
 import { ThreeCircles } from "react-loader-spinner";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
+import Rating from "../rating/Rating";
+import moment from "moment";
 
 const RoomDetailsComponent = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [currentImage, setCurrentImage] = useState("");
   const [loading, setLoading] = useState(false);
+  const [revLoading, setRevLoading] = useState(false);
   const [room, setRoom] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [username, setUsername] = useState("");
+  const [comment, setComment] = useState("");
+  const [reviews, setReviews] = useState([]);
 
   const formatMoney = (amount) => {
     let dollarUSLocale = Intl.NumberFormat("en-US");
@@ -40,8 +51,71 @@ const RoomDetailsComponent = () => {
     }
   };
 
+  const handlerAddReview = async (e) => {
+    e.preventDefault();
+    try {
+      if (rating && username && comment) {
+        setRevLoading(true);
+        const data = {
+          roomId: id,
+          username,
+          rating,
+          comment,
+        };
+        await dispatch(addRoomReview(data))
+          .then((res) => {
+            if (res.meta.requestStatus === "rejected") {
+              toast.error(res.payload);
+              setRevLoading(false);
+              return;
+            }
+            if (res.meta.requestStatus === "fulfilled") {
+              toast.success(res.payload.message);
+              setRating(0);
+              setUsername("");
+              setComment("");
+              setRevLoading(false);
+              return;
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            setRevLoading(false);
+          });
+      } else {
+        toast.error("All fields are required");
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlerGetReviews = async () => {
+    try {
+      setLoading(true);
+      await dispatch(getRoomReviews(id))
+        .then((res) => {
+          if (res.meta.requestStatus === "rejected") {
+            toast.error(res.payload);
+            setLoading(false);
+            return;
+          }
+          setReviews(res.payload);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     handlerGetRoom();
+    handlerGetReviews();
   }, [id]);
 
   useEffect(() => {
@@ -88,14 +162,24 @@ const RoomDetailsComponent = () => {
                 <div className="rd-title">
                   <h3>{room?.title}</h3>
                   <div className="rdt-right">
-                    <div className="rating">
+                    <div
+                      style={{
+                        display: "flex",
+                      }}
+                    >
+                      <p style={{ fontWeight: "bold", marginRight: 10 }}>
+                        Reviews({reviews?.length})
+                      </p>
+                      <Rating value={room?.rating} />
+                    </div>
+                    {/* <div className="rating">
                       <i className="icon_star"></i>
                       <i className="icon_star"></i>
                       <i className="icon_star"></i>
                       <i className="icon_star"></i>
                       <i className="icon_star-half_alt"></i>
-                    </div>
-                    <a href="#">Will be available in 4 days</a>
+                    </div> */}
+                    {/* <a href="#">Will be available in 4 days</a> */}
                   </div>
                 </div>
                 <h2>
@@ -136,72 +220,86 @@ const RoomDetailsComponent = () => {
             </div>
             <div className="rd-reviews">
               <h4>Reviews</h4>
-              <div className="review-item">
-                <div className="ri-pic">
-                  <img src="/img/room/avatar/avatar-1.jpg" alt="" />
+              {reviews.length > 0 ? (
+                reviews.map((item, index) => {
+                  return (
+                    <div className="review-item" key={index}>
+                      <div className="ri-pic">
+                        <img src="/img/profile_pic_default.png" alt="" />
+                      </div>
+                      <div className="ri-text">
+                        <span>
+                          {moment(item?.createdAt).format("Do MMMM, YYYY")}
+                        </span>
+                        <div className="rating">
+                          <Rating value={item.rating} />
+                        </div>
+                        <h5>{item.username}</h5>
+                        <p>{item.comment}</p>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <div>
+                  <p>No Records Found</p>
                 </div>
-                <div className="ri-text">
-                  <span>27 Aug 2019</span>
-                  <div className="rating">
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star-half_alt"></i>
-                  </div>
-                  <h5>Brandon Kelley</h5>
-                  <p>
-                    Neque porro qui squam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non numquam eius
-                    modi tempora. incidunt ut labore et dolore magnam.
-                  </p>
-                </div>
-              </div>
-              <div className="review-item">
-                <div className="ri-pic">
-                  <img src="/img/room/avatar/avatar-2.jpg" alt="" />
-                </div>
-                <div className="ri-text">
-                  <span>27 Aug 2019</span>
-                  <div className="rating">
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star"></i>
-                    <i className="icon_star-half_alt"></i>
-                  </div>
-                  <h5>Brandon Kelley</h5>
-                  <p>
-                    Neque porro qui squam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non numquam eius
-                    modi tempora. incidunt ut labore et dolore magnam.
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
             <div className="review-add">
               <h4>Add Review</h4>
               <form action="#" className="ra-form">
                 <div className="row">
-                  <div className="col-lg-6">
-                    <input type="text" placeholder="Name*" />
+                  <div className="col-lg-12">
+                    <input
+                      type="text"
+                      placeholder="Name*"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
                   </div>
-                  <div className="col-lg-6">
+                  {/* <div className="col-lg-6">
                     <input type="text" placeholder="Email*" />
-                  </div>
+                  </div> */}
                   <div className="col-lg-12">
                     <div>
                       <h5>You Rating:</h5>
-                      <div className="rating">
+                      {/* <div className="rating">
                         <i className="icon_star"></i>
                         <i className="icon_star"></i>
                         <i className="icon_star"></i>
                         <i className="icon_star"></i>
                         <i className="icon_star-half_alt"></i>
+                      </div> */}
+                      <div>
+                        {[1, 2, 3, 4, 5].map((item) => (
+                          <span
+                            style={{
+                              color: "black",
+                              border: "1px solid black",
+                              borderRadius: 5,
+                              padding: 10,
+                              marginRight: 10,
+                              cursor: "pointer",
+                              backgroundColor:
+                                rating === item ? "#ccc" : "transparent",
+                            }}
+                            key={item}
+                            onClick={() => setRating(item)}
+                          >
+                            {item}
+                          </span>
+                        ))}
                       </div>
                     </div>
-                    <textarea placeholder="Your Review"></textarea>
-                    <button type="submit">Submit Now</button>
+                    <textarea
+                      placeholder="Your Review"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                    ></textarea>
+                    <button onClick={(e) => handlerAddReview(e)}>
+                      {revLoading ? "Loadiing..." : "Submit Now"}
+                    </button>
                   </div>
                 </div>
               </form>

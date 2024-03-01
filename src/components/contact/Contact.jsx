@@ -1,4 +1,54 @@
+import { useState } from "react";
+import { sendEmail } from "../../redux/reducers/app";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+
 const ContactSectionComponent = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const sendMessageHandler = async (e) => {
+    e.preventDefault();
+    try {
+      if (email && username && message) {
+        setLoading(true);
+        const data = {
+          email,
+          username,
+          message,
+        };
+        await dispatch(sendEmail(data))
+          .then((res) => {
+            if (res.meta.requestStatus === "rejected") {
+              toast.error(res.payload);
+              setLoading(false);
+              return;
+            }
+            if (res.meta.requestStatus === "fulfilled") {
+              toast.success(res.payload.message);
+              setUsername("");
+              setEmail("");
+              setMessage("");
+              setLoading(false);
+              return;
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+            setLoading(false);
+          });
+      } else {
+        toast.error("All fields are required");
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div>
       <section className="contact-section spad">
@@ -39,14 +89,30 @@ const ContactSectionComponent = () => {
               <form action="#" className="contact-form">
                 <div className="row">
                   <div className="col-lg-6">
-                    <input type="text" placeholder="Your Name" />
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                    />
                   </div>
                   <div className="col-lg-6">
-                    <input type="text" placeholder="Your Email" />
+                    <input
+                      type="text"
+                      placeholder="Your Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
                   </div>
                   <div className="col-lg-12">
-                    <textarea placeholder="Your Message"></textarea>
-                    <button type="submit">Submit Now</button>
+                    <textarea
+                      placeholder="Your Message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                    ></textarea>
+                    <button onClick={(e) => sendMessageHandler(e)}>
+                      {loading ? "Loading..." : "Submit Now"}
+                    </button>
                   </div>
                 </div>
               </form>

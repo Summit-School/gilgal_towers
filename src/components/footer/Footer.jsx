@@ -1,5 +1,6 @@
 const FooterComponent = () => {
   const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer-section">
       <div className="container">
@@ -9,7 +10,7 @@ const FooterComponent = () => {
               <div className="ft-about">
                 <div className="logo">
                   <a href="#">
-                    <img src="img/logo-dark.png" alt="" width={150} />
+                    <img src="img/logo.png" alt="" width={130} />
                   </a>
                 </div>
                 <p>
