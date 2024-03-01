@@ -12,7 +12,7 @@ const AboutPage = () => {
       <BreadcrumbComponent title={"About Us"} slug={"About Us"} />
       <AboutSection />
       <VideoSection />
-      <GallerSection />
+      <GallerSection otherPage={true} />
       <FooterComponent />
     </div>
   );

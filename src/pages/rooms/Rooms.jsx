@@ -9,7 +9,7 @@ const RoomsPage = () => {
     <div>
       <HeaderComponent />
       <BreadcrumbComponent title={"Our Rooms"} slug={"rooms"} />
-      <FilterComponent />
+      {/* <FilterComponent /> */}
       <RoomsSection />
       <FooterComponent />
     </div>

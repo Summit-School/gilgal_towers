@@ -1,30 +1,84 @@
 import React, { useState, useEffect } from "react";
 import BookingFormComponent from "../bookingform/BookingForm";
+import { useParams } from "react-router-dom";
+import { getRoom } from "../../redux/reducers/app";
+import { ThreeCircles } from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 
 const RoomDetailsComponent = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const [currentImage, setCurrentImage] = useState("");
-  const images = [
-    "/img/room/room-details.jpg",
-    "/img/room/room-2.jpg",
-    "/img/room/room-3.jpg",
-    "/img/room/room-4.jpg",
-    "/img/room/room-5.jpg",
-  ];
+  const [loading, setLoading] = useState(false);
+  const [room, setRoom] = useState(null);
+
+  const formatMoney = (amount) => {
+    let dollarUSLocale = Intl.NumberFormat("en-US");
+    return dollarUSLocale.format(amount);
+  };
+
+  const handlerGetRoom = async () => {
+    try {
+      setLoading(true);
+      await dispatch(getRoom(id))
+        .then((res) => {
+          if (res.meta.requestStatus === "rejected") {
+            toast.error(res.payload);
+            setLoading(false);
+            return;
+          }
+          setRoom(res.payload);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    setCurrentImage(images[0]);
-  }, []);
+    handlerGetRoom();
+  }, [id]);
+
+  useEffect(() => {
+    setCurrentImage(room?.images[0]);
+  }, [room]);
+
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ThreeCircles
+          visible={true}
+          height="100"
+          width="100"
+          color="#ccc"
+          ariaLabel="three-circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
+
   return (
     <section className="room-details-section spad">
       <div className="container">
         <div className="row">
           <div className="col-lg-8">
             <div className="room-details-item">
-              <img src={currentImage} alt="" style={{ width: "100%" }} />
+              <img
+                src={`${process.env.REACT_APP_BASE_URL}/uploads/gallery/${currentImage}`}
+                alt=""
+                style={{ width: "100%" }}
+              />
               <div className="image-options">
-                {images.map((item) => (
+                {room?.images.map((item) => (
                   <img
-                    src={item}
+                    src={`${process.env.REACT_APP_BASE_URL}/uploads/gallery/${item}`}
                     alt="Room Image"
                     onClick={() => setCurrentImage(item)}
                   />
@@ -32,7 +86,7 @@ const RoomDetailsComponent = () => {
               </div>
               <div className="rd-text">
                 <div className="rd-title">
-                  <h3>Premium King Room</h3>
+                  <h3>{room?.title}</h3>
                   <div className="rdt-right">
                     <div className="rating">
                       <i className="icon_star"></i>
@@ -45,48 +99,39 @@ const RoomDetailsComponent = () => {
                   </div>
                 </div>
                 <h2>
-                  159$<span>/Pernight</span>
+                  {formatMoney(room?.price)}FCFA<span>/Pernight</span>
                 </h2>
                 <table>
                   <tbody>
                     <tr>
                       <td className="r-o">Size:</td>
-                      <td>30 ft</td>
+                      <td>{room?.size} ft</td>
                     </tr>
                     <tr>
                       <td className="r-o">Capacity:</td>
-                      <td>Max persion 5</td>
+                      <td>Max persion {room?.capacity}</td>
                     </tr>
                     <tr>
-                      <td className="r-o">Bed:</td>
-                      <td>King Beds</td>
+                      <td className="r-o">Number of Beds:</td>
+                      <td>{room?.bed}</td>
                     </tr>
                     <tr>
                       <td className="r-o">Services:</td>
-                      <td>Wifi, Television, Bathroom,...</td>
+                      <div
+                        style={{
+                          maxWidth: 420,
+                          display: "flex",
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        {room?.services[0].split(",").map((item) => (
+                          <td style={{ marginRight: 10 }}>{item},</td>
+                        ))}
+                      </div>
                     </tr>
                   </tbody>
                 </table>
-                <p className="f-para">
-                  Motorhome or Trailer that is the question for you. Here are
-                  some of the advantages and disadvantages of both, so you will
-                  be confident when purchasing an RV. When comparing Rvs, a
-                  motorhome or a travel trailer, should you buy a motorhome or
-                  fifth wheeler? The advantages and disadvantages of both are
-                  studied so that you can make your choice wisely when
-                  purchasing an RV. Possessing a motorhome or fifth wheel is an
-                  achievement of a lifetime. It can be similar to sojourning
-                  with your residence as you search the various sites of our
-                  great land, America.
-                </p>
-                <p>
-                  The two commonly known recreational vehicle classes are the
-                  motorized and towable. Towable rvs are the travel trailers and
-                  the fifth wheel. The rv travel trailer or fifth wheel has the
-                  attraction of getting towed by a pickup or a car, thus giving
-                  the adaptability of possessing transportation for you when you
-                  are parked at your campsite.
-                </p>
+                <p className="f-para">{room?.desc}</p>
               </div>
             </div>
             <div className="rd-reviews">

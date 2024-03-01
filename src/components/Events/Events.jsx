@@ -1,152 +1,92 @@
+import React, { useState, useEffect } from "react";
+import { getEvents } from "../../redux/reducers/app";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import moment from "moment";
+import { ThreeCircles } from "react-loader-spinner";
+
 const EventSection = () => {
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState([]);
+
+  const handlerGetEvents = async () => {
+    try {
+      setLoading(true);
+      await dispatch(getEvents())
+        .then((res) => {
+          if (res.meta.requestStatus === "rejected") {
+            toast.error(res.payload);
+            setLoading(false);
+            return;
+          }
+          setEvents(res.payload);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handlerGetEvents();
+  }, []);
+
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ThreeCircles
+          visible={true}
+          height="100"
+          width="100"
+          color="#ccc"
+          ariaLabel="three-circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
+
   return (
     <section className="blog-section blog-page spad">
       <div className="container">
         <div className="row">
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-1.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Travel Trip</span>
-                <h4>
-                  <a href="/event-details/:id">Tremblant In Canada</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 15th April, 2019
+          {events.length > 0 ? (
+            events.map((item, index) => {
+              const formattedDate = moment(item.createdAt).format(
+                "Do MMMM, YYYY"
+              );
+              return (
+                <div className="col-lg-4 col-md-6" key={index}>
+                  <div
+                    className="blog-item set-bg"
+                    style={{
+                      backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/uploads/gallery/${item.image[0]})`,
+                    }}
+                  >
+                    <div className="bi-text">
+                      <span className="b-tag">{item.category}</span>
+                      <h4>
+                        <a href={`/event-details/${item._id}`}>{item.title}</a>
+                      </h4>
+                      <div className="b-time">
+                        <i className="icon_clock_alt"></i> {formattedDate}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              );
+            })
+          ) : (
+            <div className="text-center">
+              <p>No Records Found</p>
             </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-2.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Camping</span>
-                <h4>
-                  <a href="/event-details/:id">Choosing A Static Caravan</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 15th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-3.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Event</span>
-                <h4>
-                  <a href="/event-details/:id">Copper Canyon</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 21th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-4.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Trivago</span>
-                <h4>
-                  <a href="/event-details/:id">A Time Travel Postcard</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 22th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-5.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Camping</span>
-                <h4>
-                  <a href="/event-details/:id">A Time Travel Postcard</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 25th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-6.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Travel Trip</span>
-                <h4>
-                  <a href="/event-details/:id">Virginia Travel For Kids</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 28th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-7.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Travel Trip</span>
-                <h4>
-                  <a href="/event-details/:id">Bryce Canyon A Stunning</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 29th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-8.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Event & Travel</span>
-                <h4>
-                  <a href="/event-details/:id">Motorhome Or Trailer</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 30th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6">
-            <div
-              className="blog-item set-bg"
-              style={{ backgroundImage: "url(img/blog/blog-9.jpg)" }}
-            >
-              <div className="bi-text">
-                <span className="b-tag">Camping</span>
-                <h4>
-                  <a href="/event-details/:id">Lost In Lagos Portugal</a>
-                </h4>
-                <div className="b-time">
-                  <i className="icon_clock_alt"></i> 30th April, 2019
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
           <div className="col-lg-12">
             <div className="load-more">
               <a href="#" className="primary-btn">

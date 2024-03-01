@@ -1,26 +1,128 @@
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getEvent, getEvents } from "../../redux/reducers/app";
+import { ThreeCircles } from "react-loader-spinner";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import moment from "moment";
+
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  InstapaperShareButton,
+  InstapaperIcon,
+  TelegramShareButton,
+  TelegramIcon,
+} from "react-share";
+
 const EventDetailsComponent = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [event, setEvent] = useState(null);
+  const [events, setEvents] = useState([]);
+  const [otherEvents, setOtherEvents] = useState([]);
+
+  const currentUrl = window.location.href;
+
+  const handlerGetEvent = async () => {
+    try {
+      setLoading(true);
+      await dispatch(getEvent(id))
+        .then((res) => {
+          if (res.meta.requestStatus === "rejected") {
+            toast.error(res.payload);
+            setLoading(false);
+            return;
+          }
+          setEvent(res.payload);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handlerGetEvents = async () => {
+    try {
+      setLoading(true);
+      await dispatch(getEvents())
+        .then((res) => {
+          if (res.meta.requestStatus === "rejected") {
+            toast.error(res.payload);
+            setLoading(false);
+            return;
+          }
+          setEvents(res.payload);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const filterEvents = () => {
+    const filtered = events.filter((item) => item.title !== event.title);
+    setOtherEvents(filtered);
+  };
+
+  useEffect(() => {
+    handlerGetEvent();
+    handlerGetEvents();
+  }, [id]);
+
+  useEffect(() => {
+    filterEvents();
+  }, [events]);
+
+  if (loading) {
+    return (
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <ThreeCircles
+          visible={true}
+          height="100"
+          width="100"
+          color="#ccc"
+          ariaLabel="three-circles-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
   return (
     <div>
       <section
         className="blog-details-hero set-bg"
         style={{
-          backgroundImage: "url(/img/blog/blog-details/blog-details-hero.jpg)",
+          backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/uploads/gallery/${event?.image[0]})`,
         }}
       >
         <div className="container">
           <div className="row">
             <div className="col-lg-10 offset-lg-1">
               <div className="bd-hero-text">
-                <span>Travel Trip & Camping</span>
-                <h2>
-                  Cdc Issues Health Alert Notice For Travelers To Usa From Hon
-                </h2>
+                <span>{event?.category}</span>
+                <h2>{event?.title}</h2>
                 <ul>
                   <li className="b-time">
-                    <i className="icon_clock_alt"></i> 15th April, 2019
+                    <i className="icon_clock_alt"></i>{" "}
+                    {moment(event?.createdAt).format("Do MMMM, YYYY")}
                   </li>
                   <li>
-                    <i className="icon_profile"></i> Kerry Jones
+                    <i className="icon_profile"></i> Gilgal Towers
                   </li>
                 </ul>
               </div>
@@ -35,33 +137,9 @@ const EventDetailsComponent = () => {
             <div className="col-lg-10 offset-lg-1">
               <div className="blog-details-text">
                 <div className="bd-title">
-                  <p>
-                    Thinking about overseas adventure travel? Have you put any
-                    thought into the best places to go when it comes to overseas
-                    adventure travel? Nepal is one of the most popular places of
-                    all, when you visit this magical country you will have the
-                    best adventures right there at your doorstep. Only overseas
-                    adventure travel in Nepal will give you these kinds of
-                    opportunities so if this is not on your list of possible
-                    places to visit yet then now is the time to put it on there!
-                  </p>
-                  <p>
-                    In Nepal your overseas adventure travel is going to be
-                    fascinating. You will get to see the Himalayan Mountains and
-                    experience all that the rich Nepalese culture has to offer.
-                    They are an amazing people who have managed to hang on to
-                    their own culture and beliefs longer than most other
-                    countries. When overseas adventure travel takes you to Nepal
-                    you will have the chance to see all of the fantastic and one
-                    of a kind lakes and forests and you can even spend days or
-                    weeks camping out in their forests with a specialized guide.
-                    And the waterfalls in Nepal are to die for, you will never
-                    see anything more gorgeous in your life as their waterfalls!
-                    This should be at the top of your overseas adventure travel
-                    destination list for sure!
-                  </p>
+                  <p>{event?.details}</p>
                 </div>
-                <div className="bd-pic">
+                {/* <div className="bd-pic">
                   <div className="bp-item">
                     <img
                       src="/img/blog/blog-details/blog-details-1.jpg"
@@ -80,8 +158,8 @@ const EventDetailsComponent = () => {
                       alt=""
                     />
                   </div>
-                </div>
-                <div className="bd-more-text">
+                </div> */}
+                {/* <div className="bd-more-text">
                   <div className="bm-item">
                     <h4>If you live in New York City</h4>
                     <p>
@@ -107,29 +185,58 @@ const EventDetailsComponent = () => {
                       cost by now, going with a limo makes ever more sense.
                     </p>
                   </div>
-                </div>
+                </div> */}
                 <div className="tag-share">
                   <div className="tags">
-                    <a href="#">Travel Trip</a>
-                    <a href="#">Camping</a>
-                    <a href="#">Event</a>
+                    <a href="#">{event?.category}</a>
                   </div>
                   <div className="social-share">
                     <span>Share:</span>
                     <a href="#">
-                      <i className="fa fa-facebook"></i>
+                      <FacebookShareButton
+                        url={currentUrl}
+                        quote={event?.title}
+                        hashtag={`#${event?.category}`}
+                      >
+                        <FacebookIcon size={32} round />
+                      </FacebookShareButton>
                     </a>
                     <a href="#">
-                      <i className="fa fa-twitter"></i>
+                      {/* <i className="fa fa-twitter"></i> */}
+                      <TwitterShareButton
+                        url={currentUrl}
+                        quote={event?.title}
+                        hashtag={`#${event?.category}`}
+                      >
+                        <TwitterIcon size={32} round />
+                      </TwitterShareButton>
                     </a>
                     <a href="#">
-                      <i className="fa fa-tripadvisor"></i>
+                      <InstapaperShareButton
+                        url={currentUrl}
+                        quote={event?.title}
+                        hashtag={`#${event?.category}`}
+                      >
+                        <InstapaperIcon size={32} round />
+                      </InstapaperShareButton>
                     </a>
                     <a href="#">
-                      <i className="fa fa-instagram"></i>
+                      <WhatsappShareButton
+                        url={currentUrl}
+                        quote={event?.title}
+                        hashtag={`#${event?.category}`}
+                      >
+                        <WhatsappIcon size={32} round />
+                      </WhatsappShareButton>
                     </a>
                     <a href="#">
-                      <i className="fa fa-youtube-play"></i>
+                      <TelegramShareButton
+                        url={currentUrl}
+                        quote={event?.title}
+                        hashtag={`#${event?.category}`}
+                      >
+                        <TelegramIcon size={32} round />
+                      </TelegramShareButton>
                     </a>
                   </div>
                 </div>
@@ -239,59 +346,44 @@ const EventDetailsComponent = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title">
-                <h2>Recommended</h2>
+                <h2>Other Events</h2>
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-4">
-              <div
-                className="blog-item set-bg"
-                style={{ backgroundImage: "url(/img/blog/blog-1.jpg)" }}
-              >
-                <div className="bi-text">
-                  <span className="b-tag">Travel Trip</span>
-                  <h4>
-                    <a href="#">Tremblant In Canada</a>
-                  </h4>
-                  <div className="b-time">
-                    <i className="icon_clock_alt"></i> 15th April, 2019
+            {otherEvents.length > 0 ? (
+              otherEvents?.slice(0, 3).map((item, index) => {
+                const formattedDate = moment(item.createdAt).format(
+                  "Do MMMM, YYYY"
+                );
+                return (
+                  <div className="col-md-4" key={index}>
+                    <div
+                      className="blog-item set-bg"
+                      style={{
+                        backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/uploads/gallery/${item.image[0]})`,
+                      }}
+                    >
+                      <div className="bi-text">
+                        <span className="b-tag">{item.category}</span>
+                        <h4>
+                          <a href={`/event-details/${item._id}`}>
+                            {item.title}
+                          </a>
+                        </h4>
+                        <div className="b-time">
+                          <i className="icon_clock_alt"></i> {formattedDate}
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                );
+              })
+            ) : (
+              <div className="text-center">
+                <p>No Records Found</p>
               </div>
-            </div>
-            <div className="col-md-4">
-              <div
-                className="blog-item set-bg"
-                style={{ backgroundImage: "url(/img/blog/blog-2.jpg)" }}
-              >
-                <div className="bi-text">
-                  <span className="b-tag">Camping</span>
-                  <h4>
-                    <a href="#">Choosing A Static Caravan</a>
-                  </h4>
-                  <div className="b-time">
-                    <i className="icon_clock_alt"></i> 15th April, 2019
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div
-                className="blog-item set-bg"
-                style={{ backgroundImage: "url(/img/blog/blog-3.jpg)" }}
-              >
-                <div className="bi-text">
-                  <span className="b-tag">Event</span>
-                  <h4>
-                    <a href="#">Copper Canyon</a>
-                  </h4>
-                  <div className="b-time">
-                    <i className="icon_clock_alt"></i> 21th April, 2019
-                  </div>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

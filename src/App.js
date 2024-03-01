@@ -33,6 +33,8 @@ import EventDetails from "./pages/Events/EventDetails";
 import ContactPage from "./pages/contact/Contact";
 import GalleryPage from "./pages/Gallery/Gallery";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 function App() {
   return (
     <div className="App">
@@ -52,6 +54,7 @@ function App() {
           <Route path="*" element={<PageError />} />
         </Routes>
       </Router>
+      <Toaster />
     </div>
   );
 }
