@@ -11,7 +11,11 @@ const HeaderComponent = () => {
     <>
       {/* <!-- Offcanvas Menu Section Begin --> */}
       <div className="offcanvas-menu-overlay"></div>
-      <div className="canvas-open" onClick={() => setShowCanvas(!showCanvas)}>
+      <div
+        className="canvas-open"
+        onClick={() => setShowCanvas(!showCanvas)}
+        style={{ border: "1px solid white", color: "white" }}
+      >
         <i className="icon_menu"></i>
       </div>
 
