@@ -607,7 +607,7 @@ ol {
 }
 
 .hero-text h1 {
-  font-size: 80px;
+  font-size: 75px;
   line-height: 90px;
   color: #ffffff;
   margin-bottom: 16px;
@@ -2818,6 +2818,7 @@ ol {
 
   .carousel-item {
     min-height: 300px;
+    background-color: red;
   }
 
   .carousel-item img {
@@ -2826,22 +2827,24 @@ ol {
   }
 
   .hero-text {
-    text-align: left;
-    margin-top: 30px !important;
+    padding-top: 15px;
+    text-align: justify;
   }
 
   .hero-text h1 {
-    font-size: 20px;
-    line-height: 22px;
+    font-size: 25px;
+    line-height: 24px;
     color: #ffffff;
     margin-bottom: 16px;
+    text-align: left;
   }
 
   .hero-text p {
     font-size: 15px;
     color: #ffffff;
-    line-height: 15px;
-    margin-bottom: 10px;
+    line-height: 13px;
+    margin-bottom: 15px;
+    text-align: left
   }
 }
 
@@ -2901,9 +2904,9 @@ ol {
     margin-bottom: 10px;
   }
 
-  /* Carouse css */
   .carousel-item {
     min-height: 300px;
+    background-color: red;
   }
 
   .carousel-item img {
@@ -2912,21 +2915,23 @@ ol {
   }
 
   .hero-text {
-    text-align: left;
-    margin-top: 30px !important;
+    padding-top: 15px;
+    text-align: justify;
   }
 
   .hero-text h1 {
-    font-size: 20px;
-    line-height: 22px;
+    font-size: 25px;
+    line-height: 24px;
     color: #ffffff;
     margin-bottom: 16px;
+    text-align: left;
   }
 
   .hero-text p {
     font-size: 15px;
     color: #ffffff;
-    line-height: 15px;
-    margin-bottom: 10px;
+    line-height: 13px;
+    margin-bottom: 15px;
+    text-align: left
   }
 }
