@@ -34,7 +34,7 @@ const AboutComponent = () => {
                 <div className="row">
                   <div className="col-sm-6">
                     <img
-                      src="img/about/about-hompage.png"
+                      src="img/about/about-hompage.jpg"
                       alt=""
                       style={{
                         width: "100%",
@@ -45,7 +45,7 @@ const AboutComponent = () => {
                   </div>
                   <div className="col-sm-6">
                     <img
-                      src="img/about/about1-homepage.png"
+                      src="img/about/about1-homepage.jpg"
                       alt=""
                       height={300}
                       style={{
@@ -101,7 +101,7 @@ const AboutComponent = () => {
                   </div>
                   <div className="col-sm-6">
                     <img
-                      src="img/about/vision.png"
+                      src="img/about/vision.jpg"
                       alt=""
                       style={{
                         width: "100%",

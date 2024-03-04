@@ -1,5 +1,6 @@
 import HeaderComponent from "../../components/header/Header";
-import HeroComponent from "../../components/herosection/Hero";
+// import HeroComponent from "../../components/herosection/Hero";
+import FullScreenSlider from "../../components/fullscreenslider/FullScreenSlider";
 import AboutComponent from "../../components/aboutsection/About";
 import ServicesComponent from "../../components/services/Services";
 import RoomsComponent from "../../components/roomssection/Rooms";
@@ -11,7 +12,8 @@ const HomePage = () => {
   return (
     <div>
       <HeaderComponent />
-      <HeroComponent />
+      {/* <HeroComponent /> */}
+      <FullScreenSlider />
       <AboutComponent />
       <ServicesComponent />
       <RoomsComponent />

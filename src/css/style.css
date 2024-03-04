@@ -603,6 +603,7 @@ ol {
 
 .hero-text {
   padding-top: 145px;
+  text-align: justify;
 }
 
 .hero-text h1 {
@@ -2365,6 +2366,18 @@ ol {
 
 .map iframe {
   width: 100%;
+}
+
+/* Full Screen Slider */
+.carousel-caption {
+  position: absolute;
+  left: 20px;
+  /* Adjust the left alignment */
+  bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Background overlay with opacity */
+  padding: 20px;
+  color: white;
 }
 
 /*-------------------------------- Respinsive Media Styles --------------------------------*/
