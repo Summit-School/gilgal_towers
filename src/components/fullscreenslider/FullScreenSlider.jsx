@@ -2,13 +2,13 @@ import Carousel from "react-bootstrap/Carousel";
 
 function CarouselFadeExample() {
   return (
-    <Carousel fade>
+    <Carousel fade className="carousel-wrapper">
       <Carousel.Item>
         <img src="img/hero/hero-1.jpg" />
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -31,7 +31,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -77,7 +77,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -100,7 +100,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -123,7 +123,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -146,7 +146,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
@@ -169,7 +169,7 @@ function CarouselFadeExample() {
         <Carousel.Caption>
           <div className="container">
             <div className="row">
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12">
                 <div className="hero-text">
                   <h1>Gilgal Towers Luxury Hotel</h1>
                   <p>
